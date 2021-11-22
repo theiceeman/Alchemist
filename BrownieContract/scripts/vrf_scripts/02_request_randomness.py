@@ -12,3 +12,4 @@ def main():
     tx.wait(1)
     vrf_contract.getRandomNumber({"from": account})
     print("Requested!")
+    

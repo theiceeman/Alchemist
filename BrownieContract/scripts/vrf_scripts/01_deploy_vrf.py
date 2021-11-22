@@ -3,6 +3,7 @@ from brownie import VRFConsumer, config, network
 from scripts.helpful_scripts import (
     get_account,
     get_contract,
+    fund_with_link,
 )
 
 
@@ -13,7 +14,7 @@ def depoly_vrf():
     fee = config["networks"][network.show_active()]["fee"]
     vrf_coordinator = get_contract("vrf_coordinator")
     link_token = get_contract("link_token")
-
+    
     return VRFConsumer.deploy(
         keyhash,
         vrf_coordinator,
@@ -22,6 +23,8 @@ def depoly_vrf():
         {"from": account},
         publish_source=config["networks"][network.show_active()].get("verify", False),
     )
+
+    
 
 
 def main():
