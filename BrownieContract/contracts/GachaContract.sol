@@ -11,8 +11,8 @@ contract Gacha is VRFConsumerBase, Ownable {
 
     //Gacha variable
 
-    uint256 itemDropChance[]; //Drop rate of the item
-    uint256 rewardID[]; //reward ID of ERC1155 NFT Token
+    uint256[] public itemDropChance; //Drop rate of the item
+    uint256[] public rewardID; //reward ID of ERC1155 NFT Token
 
     address NFTContract_Address;
     mapping(bytes32 => address) private s_rollers;
@@ -23,7 +23,7 @@ contract Gacha is VRFConsumerBase, Ownable {
     
     
     uint256 public randomResult;
-    uint256 private constant ROLL_IN_PROGRESS = 42;
+    uint256 private constant ROLL_IN_PROGRESS = 10000000000;
 
     event GachaRolled(bytes32 indexed requestId, address indexed roller);
     event GachaResult(bytes32 indexed requestId, uint256 indexed result);
@@ -47,22 +47,20 @@ contract Gacha is VRFConsumerBase, Ownable {
         fee = _fee;
     }
 
-    /** 
-     * Requests randomness
-     */
-     
-    function setNFTContractAddr(address _address) public {
+
+    // ERC1155 ACM NFT address
+    function setNFTContractAddr(address _address) public onlyOwner{
        NFTContract_Address = _address;
     }
 
-    //Sum of array to calculate item_drop_rate
-    function calcSum(uint256[] arr) public return (uint256 sum) {
-        uint256 sum = 0;
 
-        for(uint256 i=0; i<arr.length; i++){
-            sum = sum + arr[i];
-        }
+    //Use this function to set Gacha item properties, this require 2 input array of itemDropChance ex. [70,20,10] and arr_ID is input parameter to set the array ID of reward ACM NFT token 
+    function setGachaItemProperties(uint256[] arrayOfItemDropChance, uint256[] arr_ID) public onlyOwner{
+        itemDropChance = arrayOfItemDropChance; //Drop rate of the item
+        rewardID = arr_ID;
     }
+
+    
 
     // function to add NFT address and amount of NFT to Gacha container 
     function AddItemInGacha(address NFTContract, uint256 amount) public onlyOwner {
@@ -70,27 +68,33 @@ contract Gacha is VRFConsumerBase, Ownable {
 
         
     }
+    ///////////////////////////////////////////////////////////////////////////
 
+    //Sum of array to calculate item_drop_rate
+    function calcSum(uint256[] arr) public returns (uint256 sum) {
+        uint256 sum = 0;
 
+        for(uint256 i=0; i<arr.length; i++){
+            sum = sum + arr[i];
+        }
+    }
 
-   //function sample 
+   //This function use to check if item are pick or not if not then go to next index
 
-    function sample(uint256[] arr, bytes32 requestId) public return (uint256 index) {
+    function sample(uint256[] arr, bytes32 requestId) public returns (uint256 index) {
         //check result from player address
-        uint256 random = s_results[s_rollers[requestId]]
+        uint256 random = s_results[s_rollers[requestId]] % calcSum(arr);
 
         uint256 sum = 0; //use sum to find the outcome result
 
-        if(sum > random){
+        if(sum >= random){
             break;
         }
 
         index++; 
-
-
     }
 
-
+    //Attach requestID to roller address after 
     function GachaRandomCaller(address roller) public onlyOwner returns (bytes32 requestId) {
         require(LINK.balanceOf(address(this)) >= fee, "Not enough LINK to pay fee");
         require(s_results[roller] == 0, "Already rolled");
@@ -108,8 +112,10 @@ contract Gacha is VRFConsumerBase, Ownable {
 
     
     function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
-        uint256 random_result = (randomness % calcSum) + 1;
+        uint256 random_result = randomness;
         s_results[s_rollers[requestId]] = random_result;
+        sample(itemDropChance, requestId);
+
         emit GachaResult(requestId, randomResult);
     }
 
