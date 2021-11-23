@@ -1,23 +1,33 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Burnable.sol";
 import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
-contract ACMToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
+contract AlchemistNFT is ERC1155, Ownable   {
+
+    /* mapping(address => uint256) getID;
+    mapping(uint256 => address) getAddress;
+
+
+ */
+ 
+    
+
+ 
     constructor() ERC1155("https://yss2n1a1jfia.usemoralis.com/{id}.json") {}
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
     }
 
-    function mint(address account, uint256 id, uint256 amount, bytes memory data)
+    function mint(address account, uint256 id, uint256 amount)
         public
         onlyOwner
     {
-        _mint(account, id, amount, data);
+        _mint(account, id, amount, "");
     }
 
     function mintBatch(address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)
@@ -27,12 +37,7 @@ contract ACMToken is ERC1155, Ownable, ERC1155Burnable, ERC1155Supply {
         _mintBatch(to, ids, amounts, data);
     }
 
-    // The following functions are overrides required by Solidity.
+    
 
-    function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)
-        internal
-        override(ERC1155, ERC1155Supply)
-    {
-        super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
-    }
+
 }

@@ -2,21 +2,21 @@
 pragma solidity ^0.8.0;
 import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
-contract Gacha is VRFConsumberBase {
+contract Gacha is VRFConsumerBase, Ownable {
 
     bytes32 internal keyHash;
     uint256 internal fee;
-
-    address[] public Gacha;
-
+    address NFTContract_Address;
     mapping(bytes32 => address) private s_rollers;
     mapping(address => uint256) private s_results;
+    
+    mapping(address => uint256)[] public NumberOfItem;
     
     uint256 public randomResult;
     uint256 private constant ROLL_IN_PROGRESS = 42;
 
-    event GachaRolled(bytes32 indexed requestId, address indexed roller);
     event GachaRolled(bytes32 indexed requestId, address indexed roller);
     event GachaResult(bytes32 indexed requestId, uint256 indexed result);
     /**
@@ -42,6 +42,18 @@ contract Gacha is VRFConsumberBase {
     /** 
      * Requests randomness
      */
+     
+    function setNFTContractAddr(address _address) public {
+       NFTContract_Address = _address;
+    }
+
+    // function to add NFT address and amount of NFT to Gacha container 
+    function AddItemInGacha(address NFTContract, uint256 amount) public onlyOwner {
+        // .safeBatchTransferFrom(deployerAddress, playerAddress, [0,1,3,4], [50,100,1,1], "0x0")
+        
+    }
+
+
     function GachaCaller(address roller) public onlyOwner returns (bytes32 requestId) {
         require(LINK.balanceOf(address(this)) >= fee, "Not enough LINK to pay fee");
         require(s_results[roller] == 0, "Already rolled");
@@ -63,15 +75,10 @@ contract Gacha is VRFConsumberBase {
         s_results[s_rollers[requestId]] = random_result;
         emit GachaResult(requestId, randomResult);
     }
+
+    function sentResultToPlayer(address player) public view returns (string memory) {
+        
+        require(s_results[player] != 0, "not rolled");
+        require(s_results[player] != ROLL_IN_PROGRESS, "Roll in progress");
+    } 
 }
-
-    
-
-    /* uint256 public Number;
-    function SetNum(uint256 _Number) public onlyOwner {
-        // only the owner can call specialThing()!
-        Number = _Number;
-    }
-      */
-
-
