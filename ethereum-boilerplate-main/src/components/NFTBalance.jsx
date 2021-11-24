@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useNFTBalances } from "react-moralis";
 import { Card, Image, Tooltip, Modal, Input } from "antd";
-import { useNFTBalance } from "hooks/useNFTBalance";
 import { FileSearchOutlined, SendOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { getExplorer } from "helpers/networks";
@@ -21,7 +20,7 @@ const styles = {
 };
 
 function NFTBalance() {
-  const { NFTBalance } = useNFTBalance();
+  const { data: NFTBalances } = useNFTBalances();
   const { chainId } = useMoralisDapp();
   const { Moralis } = useMoralis();
   const [visible, setVisibility] = useState(false);
@@ -29,6 +28,8 @@ function NFTBalance() {
   const [amountToSend, setAmount] = useState(null);
   const [nftToSend, setNftToSend] = useState(null);
   const [isPending, setIsPending] = useState(false);
+
+  console.log("NFTBalances", NFTBalances);
 
   async function transfer(nft, amount, receiver) {
     const options = {
@@ -63,20 +64,18 @@ function NFTBalance() {
     setAmount(e.target.value);
   };
 
-  console.log(NFTBalance);
+  console.log("NFTBalances", NFTBalances);
   return (
     <>
       <div style={styles.NFTs}>
-        {NFTBalance &&
-          NFTBalance.map((nft, index) => (
+        {NFTBalances?.result &&
+          NFTBalances.result.map((nft, index) => (
             <Card
               hoverable
               actions={[
                 <Tooltip title="View On Blockexplorer">
                   <FileSearchOutlined
-                    onClick={() =>
-                      window.open(`${getExplorer(chainId)}address/${nft.token_address}`, "_blank")
-                    }
+                    onClick={() => window.open(`${getExplorer(chainId)}address/${nft.token_address}`, "_blank")}
                   />
                 </Tooltip>,
                 <Tooltip title="Transfer NFT">

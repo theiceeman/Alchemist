@@ -1,12 +1,6 @@
 import { useEffect } from "react";
 import { useMoralis } from "react-moralis";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Account from "components/Account";
 import Chains from "components/Chains";
 import TokenPrice from "components/TokenPrice";
@@ -15,7 +9,7 @@ import ERC20Transfers from "components/ERC20Transfers";
 import InchDex from "components/InchDex";
 import NFTBalance from "components/NFTBalance";
 import Wallet from "components/Wallet";
-import { Menu, Layout, Tabs } from "antd";
+import { Layout, Tabs } from "antd";
 import "antd/dist/antd.css";
 import NativeBalance from "components/NativeBalance";
 import "./style.css";
@@ -23,6 +17,7 @@ import QuickStart from "components/QuickStart";
 import Contract from "components/Contract/Contract";
 import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
+import MenuItems from "./components/MenuItems";
 const { Header, Footer } = Layout;
 
 const styles = {
@@ -56,8 +51,7 @@ const styles = {
   },
 };
 const App = ({ isServerInfo }) => {
-  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } =
-    useMoralis();
+  const { isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
 
   useEffect(() => {
     if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -69,43 +63,7 @@ const App = ({ isServerInfo }) => {
       <Router>
         <Header style={styles.header}>
           <Logo />
-          <Menu
-            theme="light"
-            mode="horizontal"
-            style={{
-              display: "flex",
-              fontSize: "17px",
-              fontWeight: "500",
-              width: "100%",
-              justifyContent: "center",
-            }}
-            defaultSelectedKeys={["quickstart"]}
-          >
-            <Menu.Item key="quickstart">
-              <NavLink to="/quickstart">🚀 Quick Start</NavLink>
-            </Menu.Item>
-            <Menu.Item key="wallet">
-              <NavLink to="/wallet">👛 Wallet</NavLink>
-            </Menu.Item>
-            <Menu.Item key="onramp">
-              <NavLink to="/onramp">💵 Fiat</NavLink>
-            </Menu.Item>
-            <Menu.Item key="dex">
-              <NavLink to="/1inch">🏦 Dex</NavLink>
-            </Menu.Item>
-            <Menu.Item key="balances">
-              <NavLink to="/erc20balance">💰 Balances</NavLink>
-            </Menu.Item>
-            <Menu.Item key="transfers">
-              <NavLink to="/erc20transfers">💸 Transfers</NavLink>
-            </Menu.Item>
-            <Menu.Item key="nft">
-              <NavLink to="/nftBalance">🖼 NFTs</NavLink>
-            </Menu.Item>
-            <Menu.Item key="contract">
-              <NavLink to="/contract">📄 Contract</NavLink>
-            </Menu.Item>
-          </Menu>
+          <MenuItems />
           <div style={styles.headerRight}>
             <Chains />
             <TokenPrice
@@ -118,47 +76,54 @@ const App = ({ isServerInfo }) => {
             <Account />
           </div>
         </Header>
+
         <div style={styles.content}>
-          <Switch>
-            <Route path="/quickstart">
-              <QuickStart isServerInfo={isServerInfo} />
-            </Route>
-            <Route path="/wallet">
-              <Wallet />
-            </Route>
-            <Route path="/1inch">
-              <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
-                <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
-                  <InchDex chain="eth" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
-                  <InchDex chain="bsc" />
-                </Tabs.TabPane>
-                <Tabs.TabPane tab={<span>Polygon</span>} key="3">
-                  <InchDex chain="polygon" />
-                </Tabs.TabPane>
-              </Tabs>
-            </Route>
-            <Route path="/erc20balance">
-              <ERC20Balance />
-            </Route>
-            <Route path="/onramp">
-              <Ramper />
-            </Route>
-            <Route path="/erc20transfers">
-              <ERC20Transfers />
-            </Route>
-            <Route path="/nftBalance">
-              <NFTBalance />
-            </Route>
-            <Route path="/contract">
-              <Contract />
-            </Route>
-            <Route path="/nonauthenticated">
-              <>Please login using the "Authenticate" button</>
-            </Route>
-          </Switch>
-          <Redirect to="/quickstart" />
+          {!isAuthenticated ? (
+            <>Please login using the "Authenticate" button</>
+          ) : (
+            <Switch>
+              <Route path="/quickstart">
+                <QuickStart isServerInfo={isServerInfo} />
+              </Route>
+              <Route path="/wallet">
+                <Wallet />
+              </Route>
+              <Route path="/1inch">
+                <Tabs defaultActiveKey="1" style={{ alignItems: "center" }}>
+                  <Tabs.TabPane tab={<span>Ethereum</span>} key="1">
+                    <InchDex chain="eth" />
+                  </Tabs.TabPane>
+                  <Tabs.TabPane tab={<span>Binance Smart Chain</span>} key="2">
+                    <InchDex chain="bsc" />
+                  </Tabs.TabPane>
+                  <Tabs.TabPane tab={<span>Polygon</span>} key="3">
+                    <InchDex chain="polygon" />
+                  </Tabs.TabPane>
+                </Tabs>
+              </Route>
+              <Route path="/erc20balance">
+                <ERC20Balance />
+              </Route>
+              <Route path="/onramp">
+                <Ramper />
+              </Route>
+              <Route path="/erc20transfers">
+                <ERC20Transfers />
+              </Route>
+              <Route path="/nftBalance">
+                <NFTBalance />
+              </Route>
+              <Route path="/contract">
+                <Contract />
+              </Route>
+              <Route exact path="/">
+                <Redirect to="/wallet" />
+              </Route>
+              <Route path="/nonauthenticated">
+                <>Please login using the "Authenticate" button</>
+              </Route>
+            </Switch>
+          )}
         </div>
       </Router>
       <Footer style={{ textAlign: "center" }}>
@@ -202,13 +167,7 @@ const App = ({ isServerInfo }) => {
 
 export const Logo = () => (
   <div style={{ display: "flex" }}>
-    <svg
-      width="60"
-      height="38"
-      viewBox="0 0 50 38"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="60" height="38" viewBox="0 0 50 38" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M43.6871 32.3986C43.5973 32.4884 43.53 32.5782 43.4402 32.6905C43.53 32.6007 43.5973 32.5109 43.6871 32.3986Z"
         fill="black"

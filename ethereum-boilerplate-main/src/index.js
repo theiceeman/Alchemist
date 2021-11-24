@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+//import App from "./App";
+import App from './components/app.jsx';
 import { MoralisProvider } from "react-moralis";
 import "./index.css";
 import QuickStart from "components/QuickStart";
 import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDappProvider";
+import store from './store';
+import { Provider } from 'react-redux'
+
+require('dotenv').config();
 
 /** Get your free Moralis Account https://moralis.io/ */
 
@@ -17,22 +22,27 @@ const Application = () => {
     return (
       <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
         <MoralisDappProvider>
-          <App isServerInfo />
+          <App isServerInfo/>
         </MoralisDappProvider>
       </MoralisProvider>
     );
   else {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <QuickStart />
+		      <App isServerInfo />
       </div>
     );
   }
 };
 
-ReactDOM.render(
+/* ReactDOM.render(
   // <React.StrictMode>
   <Application />,
   // </React.StrictMode>,
   document.getElementById("root")
-);
+); */
+ReactDOM.render(
+	<Provider store={store}>
+		<Application />
+	</Provider>, 
+	document.getElementById('root'));
