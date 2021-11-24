@@ -33,7 +33,7 @@ const slidermainparticle= () => (
               <div className="spacer-single"></div>
               <h6> <span className="text-uppercase color">Gigaland Market</span></h6>
               <Reveal className='onStep' keyframes={fadeInUp} delay={300} duration={900} triggerOnce>
-              <h1 className="col-white">Create, sell or collect digital items.</h1>
+              <h1 className="col-white">Welcome to Alchemist War Marketplace.</h1>
               </Reveal>
               <Reveal className='onStep' keyframes={fadeInUp} delay={600} duration={900} triggerOnce>
               <p className="lead col-white">

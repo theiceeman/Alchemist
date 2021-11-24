@@ -111,7 +111,7 @@ const GlobalStyles = createGlobalStyle`
 const homeone= () => (
   <div>
   <GlobalStyles />
-      <section className="jumbotron no-bg" style={{backgroundImage: `url(${'./img/background/8.jpg'})`}}>
+      <section className="jumbotron no-bg" style={{backgroundImage: `url(${'./img/background/Background_01.png'})`}}>
        <Particle/>
          <SliderMainParticle/>
       </section>

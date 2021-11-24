@@ -8,7 +8,14 @@ import QuickStart from "components/QuickStart";
 import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDappProvider";
 import store from './store';
 import { Provider } from 'react-redux'
-
+import "./assets/animated.css";
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import '../node_modules/elegant-icons/style.css';
+import '../node_modules/et-line/style.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/js/bootstrap.js';
+import './assets/style.scss';
+import * as serviceWorker from './serviceWorker';
 require('dotenv').config();
 
 /** Get your free Moralis Account https://moralis.io/ */
@@ -46,3 +53,4 @@ ReactDOM.render(
 		<Application />
 	</Provider>, 
 	document.getElementById('root'));
+serviceWorker.unregister();

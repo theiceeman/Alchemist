@@ -24,13 +24,13 @@ import Home2 from './pages/home2';
 import ScrollToTopBtn from './menu/ScrollToTop';
 
 import { createGlobalStyle } from 'styled-components';
-
+import Header from './menu/header'; 
 const GlobalStyles = createGlobalStyle`
   :root {
     scroll-behavior: unset;
   }
 `;
-const { Header, Footer } = Layout;
+const { Footer } = Layout;
 
 
 
