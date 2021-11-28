@@ -118,12 +118,12 @@ const homeone= () => (
 
       <section className='container no-bottom'>
         <div className="row">
-            <div className="col-lg-2 col-sm-4 col-6 mb30">
+            {/* <div className="col-lg-2 col-sm-4 col-6 mb30">
                 <span className="box-url">
                     <img src="./img/wallet/1.png" alt="" className="mb20"/>
                     <h4>Metamask</h4>
                 </span>
-            </div>
+            </div> */}
 
             {/* <div className="col-lg-2 col-sm-4 col-6 mb30">
                 <span className="box-url">
@@ -162,7 +162,7 @@ const homeone= () => (
         </div>
       </section>
 
-      <section className='container no-top no-bottom'>
+      {/* <section className='container no-top no-bottom'>
         <div className='row'>
           <div className="spacer-double"></div>
           <div className='col-lg-12 mb-2'>
@@ -204,9 +204,9 @@ const homeone= () => (
             </div>
             <FeatureBox/>
         </div>
-      </section>
+      </section> */}
 
-    <Footer />
+
 
   </div>
 );

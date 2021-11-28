@@ -62,6 +62,13 @@ networks:
     vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
     keyhash: '0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4'
     fee: 1000000000000000000
+  mumbai_moralis:
+    eth_usd_price_feed: '0x0715A7794a1dc8e42615F059dD6e406A6594651A'
+    link_token: '0x326C977E6efc84E512bB9C30f76E30c160eD06FB'
+    vrf_coordinator: '0x8C7382F9D8f56b33781fE506E897a4F1e2d17255'
+    keyhash: '0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4'
+    fee: 100000000000000
+    fund_amount : 10000000000000000
   binance:
     # link_token: ??
     eth_usd_price_feed: '0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e'

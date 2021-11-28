@@ -3,7 +3,7 @@ import { Link } from '@reach/router';
 
 const footer= () => (
   <footer className="footer-light">
-            <div className="container">
+            {/* <div className="container">
                 <div className="row">
                     <div className="col-md-3 col-sm-6 col-xs-1">
                         <div className="widget">
@@ -70,7 +70,7 @@ const footer= () => (
                             <div className="de-flex">
                                 <div className="de-flex-col">
                                     <span onClick={()=> window.open("", "_self")}>
-                                        <span className="copy">&copy; Copyright 2021 - Gigaland by Designesia</span>
+                                        <span className="copy">&copy; Copyright 2021 - AlchemistWar</span>
                                     </span>
                                 </div>
                                 <div className="de-flex-col">
@@ -86,7 +86,7 @@ const footer= () => (
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </footer>
 );
 export default footer;

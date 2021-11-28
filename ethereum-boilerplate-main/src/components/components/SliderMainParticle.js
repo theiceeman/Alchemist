@@ -42,12 +42,12 @@ const slidermainparticle= () => (
               </Reveal>
               <div className="spacer-10"></div>
               <Reveal className='onStep d-inline' keyframes={inline} delay={800} duration={900} triggerOnce>
-              <span onClick={()=> window.open("#", "_self")} className="btn-main inline lead">Download Demo</span>
+              <span onClick={()=> window.open("wallet", "_self")} className="btn-main inline lead">Start now</span>
               <div className="mb-sm-30"></div>
               </Reveal>
 
               <Reveal className='onStep d-inline' keyframes={inline} delay={900} duration={1200} triggerOnce>
-              <div className="row">
+              {/* <div className="row">
                   <div className="spacer-single"></div>
                   <div className="row">
                           <div className="col-lg-4 col-md-6 col-sm-4 mb30">
@@ -71,15 +71,18 @@ const slidermainparticle= () => (
                               </div>
                           </div>
                       </div>
-              </div>
+              </div> */}
               </Reveal>
           </div>
-          <div className="col-md-6 xs-hide">
-          <Reveal className='onStep d-inline' keyframes={inline} delay={300} duration={1200} triggerOnce>
-              <img src="./img/misc/women-with-vr.png" className="img-fluid" alt=""/>
-          </Reveal>
+          <div className="col-md-6">
+            <Reveal className='onStep d-inline' keyframes={inline} delay={300} duration={1200} triggerOnce>
+                
+            </Reveal>
           </div>
       </div>
     </div>
 );
 export default slidermainparticle;
+
+//xs-hide
+//<img src="./img/misc/women-with-vr.png" className="img-fluid" alt=""/>

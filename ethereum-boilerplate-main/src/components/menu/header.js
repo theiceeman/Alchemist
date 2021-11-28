@@ -116,9 +116,9 @@ const Header= function() {
               </div>
           </div>
 
-          <div className='search'>
+          {/* <div className='search'>
             <input id="quick_search" className="xs-hide" name="quick_search" placeholder="search item here..." type="text" />
-          </div>
+          </div>  */}
                     
               <BreakpointProvider>
                 <Breakpoint l down>
@@ -129,14 +129,12 @@ const Header= function() {
                         <div className="dropdown-custom dropdown-toggle btn" 
                           onClick={handleBtnClick}
                           >
-                          Home
+                          Store
                         </div>
                         {openMenu && (
                           <div className='item-dropdown'>
                             <div className="dropdown" onClick={closeMenu}>
-                              <NavLink to="/" onClick={() => btn_icon(!showmenu)}>Homepage</NavLink>
-                              <NavLink to="/home1" onClick={() => btn_icon(!showmenu)}>Homepage 1</NavLink>
-                              <NavLink to="/home2" onClick={() => btn_icon(!showmenu)}>Homepage 1</NavLink>
+                              <NavLink to="/wallet" onClick={() => btn_icon(!showmenu)}>Key</NavLink>
                             </div>
                           </div>
                         )}
@@ -147,10 +145,10 @@ const Header= function() {
                         <div className="dropdown-custom dropdown-toggle btn" 
                           onClick={handleBtnClick1}
                           >
-                          Explore
+                          Marketplace
                         </div>
                         {openMenu1 && (
-                          <div className='item-dropdown'>
+                          {/* <div className='item-dropdown'>
                             <div className="dropdown" onClick={closeMenu1}>
                               <NavLink to="/explore" onClick={() => btn_icon(!showmenu)}>Explore</NavLink>
                               <NavLink to="/explore2" onClick={() => btn_icon(!showmenu)}>Explore 2</NavLink>
@@ -160,7 +158,7 @@ const Header= function() {
                               <NavLink to="/Auction" onClick={() => btn_icon(!showmenu)}>Live Auction</NavLink>
                               <NavLink to="/helpcenter" onClick={() => btn_icon(!showmenu)}>Help Center</NavLink>
                             </div>
-                          </div>
+                          </div> */}
                         )}
                       </div>
                     </div>
@@ -173,7 +171,7 @@ const Header= function() {
                         </div>
                         {openMenu2 && (
                           <div className='item-dropdown'>
-                            <div className="dropdown" onClick={closeMenu2}>
+                            {/* <div className="dropdown" onClick={closeMenu2}>
                               <NavLink to="/Author" onClick={() => btn_icon(!showmenu)}>Author</NavLink>
                               <NavLink to="/wallet" onClick={() => btn_icon(!showmenu)}>Wallet</NavLink>
                               <NavLink to="/create" onClick={() => btn_icon(!showmenu)}>Create</NavLink>
@@ -183,7 +181,7 @@ const Header= function() {
                               <NavLink to="/loginTwo" onClick={() => btn_icon(!showmenu)}>login 2</NavLink>
                               <NavLink to="/register" onClick={() => btn_icon(!showmenu)}>Register</NavLink>
                               <NavLink to="/contact" onClick={() => btn_icon(!showmenu)}>Contact Us</NavLink>
-                            </div>
+                            </div> */}
                           </div>
                         )}
                       </div>
@@ -202,7 +200,7 @@ const Header= function() {
                         </div>
                         {openMenu3 && (
                           <div className='item-dropdown'>
-                            <div className="dropdown" onClick={closeMenu3}>
+                            {/* <div className="dropdown" onClick={closeMenu3}>
                               <NavLink to="/elegantIcons" onClick={() => btn_icon(!showmenu)}>Elegant Icon</NavLink>
                               <NavLink to="/etlineIcons" onClick={() => btn_icon(!showmenu)}>Etline Icon</NavLink>
                               <NavLink to="/fontAwesomeIcons" onClick={() => btn_icon(!showmenu)}>Font Awesome Icon</NavLink>
@@ -211,7 +209,7 @@ const Header= function() {
                               <NavLink to="/price" onClick={() => btn_icon(!showmenu)}>Pricing Table</NavLink>
                               <NavLink to="/progressbar" onClick={() => btn_icon(!showmenu)}>Progress bar</NavLink>
                               <NavLink to="/tabs" onClick={() => btn_icon(!showmenu)}>Tabs</NavLink>
-                            </div>
+                            </div> */}
                           </div>
                         )}
                       </div>
@@ -226,14 +224,12 @@ const Header= function() {
                         <div ref={ref}>
                           <div className="dropdown-custom dropdown-toggle btn" 
                              onMouseEnter={handleBtnClick} onMouseLeave={closeMenu}>
-                            Home
+                            Store
                             <span className='lines'></span>
                             {openMenu && (
                             <div className='item-dropdown'>
                               <div className="dropdown" onClick={closeMenu}>
-                                <NavLink to="/">Homepage</NavLink>
-                                <NavLink to="/home1">Homepage 1</NavLink>
-                                <NavLink to="/home2">Homepage 2</NavLink>
+                                <NavLink to="/key">Key</NavLink>
                               </div>
                             </div>
                           )}
