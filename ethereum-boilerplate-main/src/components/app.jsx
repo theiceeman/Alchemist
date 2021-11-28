@@ -21,6 +21,7 @@ import Text from "antd/lib/typography/Text";
 import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems"; */
 import Home2 from './pages/home2';
+import Wallet from './pages/wallet';
 import ScrollToTopBtn from './menu/ScrollToTop';
 
 import { createGlobalStyle } from 'styled-components';
@@ -73,6 +74,7 @@ const App = ({ isServerInfo }) => {
               <Home2 exact path="/">
                 <Redirect to="/home2" />
               </Home2>
+              <Wallet path="/wallet" />
               
               </ScrollTop>
             </PosedRouter>

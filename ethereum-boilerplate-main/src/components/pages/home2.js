@@ -125,7 +125,7 @@ const homeone= () => (
                 </span>
             </div>
 
-            <div className="col-lg-2 col-sm-4 col-6 mb30">
+            {/* <div className="col-lg-2 col-sm-4 col-6 mb30">
                 <span className="box-url">
                     <img src="./img/wallet/2.png" alt="" className="mb20"/>
                     <h4>Bitski</h4>
@@ -158,7 +158,7 @@ const homeone= () => (
                     <img src="./img/wallet/6.png" alt="" className="mb20"/>
                     <h4>Arkane</h4>
                 </span>
-            </div>                                       
+            </div>  */}                                      
         </div>
       </section>
 
