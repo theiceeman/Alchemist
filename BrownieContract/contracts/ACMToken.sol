@@ -14,7 +14,4 @@ contract AlchemistToken is ERC20, ERC20Burnable, Ownable {
         _mint(to, amount);
     }
 
-    function burnFrom(address account, uint256 amount) public onlyOwner {
-        _burn(account, amount);
-    }
 }
