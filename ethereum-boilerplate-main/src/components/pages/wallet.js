@@ -157,7 +157,6 @@ function CheckAuthenticate() {
 
   return (
     <section className='jumbotron breadcumb no-bg' >
-    
     <div className='mainbreadcumb'>
       <div className='container'>
         <div className='row m-10-hor'>
@@ -206,7 +205,6 @@ function CheckAuthenticate() {
         </div>
       </div>
     </div>
-    
     </section>
   );
 }
