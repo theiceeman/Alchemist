@@ -14,6 +14,7 @@ contract Gacha is VRFConsumerBase, Ownable {
 
     //Gacha variable
     uint256 public KeyId;
+    uint256 public indexs;
     uint256[] public itemDropChance; //Drop rate of the item
     uint256[] public rewardID; //reward ID of ERC1155 NFT Token
 
@@ -81,8 +82,7 @@ contract Gacha is VRFConsumerBase, Ownable {
         return sum;
     }
 
-   //This function use to check if item are pick or not if not then go to next index
-
+   //This function use to check the outcome of item through probability
     function sample(uint256[] memory arr, bytes32 requestId) public returns (uint256 index) {
         uint256 s = 0; //use sum to find the outcome result
         //check result from player address
@@ -93,7 +93,7 @@ contract Gacha is VRFConsumerBase, Ownable {
             
             s += arr[i];
 
-            if(s >= random){
+            if(s > random){
                 break;
             }
 
@@ -103,15 +103,13 @@ contract Gacha is VRFConsumerBase, Ownable {
 
 
 
-
-    //Attach requestID to roller address after 
     function GachaRandomCaller(address _address) public returns (bytes32 requestId) {
         IERC1155 acmNFT = IERC1155(NFTContract_Address);
         require(acmNFT.balanceOf(msg.sender, KeyId) > 0);
         require(acmNFT.isApprovedForAll(msg.sender, address(this)), "contract must approve");
         require(LINK.balanceOf(address(this)) >= fee, "Not enough LINK to pay fee");
-        acmNFT.safeTransferFrom(_address, Owner_Address, KeyId, 1, "");
         requestId = requestRandomness(keyHash, fee);
+        acmNFT.safeTransferFrom(_address, Owner_Address, KeyId, 1, "");
         s_rollers[requestId] = _address; // mapping requestId with roller address
         s_results[_address] = ROLL_IN_PROGRESS;
         emit GachaRolled(requestId, _address);
@@ -128,10 +126,11 @@ contract Gacha is VRFConsumerBase, Ownable {
     
     function fulfillRandomness(bytes32 requestId, uint256 randomness) internal override {
         IERC1155 acmNFT = IERC1155(NFTContract_Address);
+        randomResult = randomness;
+        s_results[s_rollers[requestId]] = randomness;
         uint256 index = sample(itemDropChance, requestId);
         uint256 reward = rewardID[index];
         acmNFT.safeTransferFrom(Owner_Address, s_rollers[requestId], reward, 1, "");
-        randomResult = randomness;
         s_results[s_rollers[requestId]] = reward;
         emit GachaResult(requestId, randomResult);
     }
