@@ -132,7 +132,7 @@ const styles = {
 
 
 function CheckAuthenticate() {
-  const { authenticate, isAuthenticated, logout, isAuthenticating  } = useMoralis();
+  const { authenticate, isAuthenticated, logout, isAuthenticating, signup  } = useMoralis();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
