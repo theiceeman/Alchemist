@@ -16,7 +16,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.js';
 import './assets/style.scss';
 import * as serviceWorker from './serviceWorker';
-require('dotenv').config({path:'C:/Users/COM/Documents/GitHub/AlchemistWar_Contract/ethereum-boilerplate-main/.env'});
+require('dotenv').config();
 
 /** Get your free Moralis Account https://moralis.io/ */
 
