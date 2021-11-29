@@ -241,18 +241,18 @@ const Header= function() {
                       <div ref={ref1}>
                           <div className="dropdown-custom dropdown-toggle btn" 
                              onMouseEnter={handleBtnClick1} onMouseLeave={closeMenu1}>
-                            Explore
+                            Marketplace
                             <span className='lines'></span>
                             {openMenu1 && (
                             <div className='item-dropdown'>
                               <div className="dropdown" onClick={closeMenu1}>
-                              <NavLink to="/explore">Explore</NavLink>
-                              <NavLink to="/explore2">Explore 2</NavLink>
+                              <NavLink to="/explore">Coming Soon!</NavLink>
+                              {/* <NavLink to="/explore2">Explore 2</NavLink>
                               <NavLink to="/rangking">Rangking</NavLink>
                               <NavLink to="/colection">Collection</NavLink>
                               <NavLink to="/ItemDetail">Items Details</NavLink>
                               <NavLink to="/Auction">Live Auction</NavLink>
-                              <NavLink to="/helpcenter">Help Center</NavLink>
+                              <NavLink to="/helpcenter">Help Center</NavLink> */}
                               </div>
                             </div>
                           )}
@@ -284,7 +284,7 @@ const Header= function() {
                           </div>
                         </div>
                     </div>
-                    <div className='navbar-item'>
+                    {/* <div className='navbar-item'>
                       <NavLink to="/activity">
                       Activity
                       <span className='lines'></span>
@@ -312,7 +312,7 @@ const Header= function() {
                           )}
                           </div>
                         </div>
-                    </div>
+                    </div> */}
                   </div>
                 </Breakpoint>
               </BreakpointProvider>

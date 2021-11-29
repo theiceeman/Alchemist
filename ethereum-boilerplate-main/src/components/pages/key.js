@@ -108,7 +108,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const key= () => (
+const Key= () => (
   <div>
   <GlobalStyles/>
   
@@ -160,4 +160,4 @@ const key= () => (
   </div>
   
 );
-export default key;
+export default Key;

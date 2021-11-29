@@ -22,7 +22,7 @@ import Ramper from "components/Ramper";
 import MenuItems from "./components/MenuItems"; */
 import Home2 from './pages/home2';
 import Wallet from './pages/wallet';
-import key from './pages/key';
+import Key from './pages/key';
 import ScrollToTopBtn from './menu/ScrollToTop';
 
 import { createGlobalStyle } from 'styled-components';
@@ -76,7 +76,7 @@ const App = ({ isServerInfo }) => {
                 <Redirect to="/home2" />
               </Home2>
               <Wallet path="/wallet" />
-              <key path="/key" />
+              <Key path="/key" />
               </ScrollTop>
             </PosedRouter>
           <ScrollToTopBtn />
