@@ -1,12 +1,12 @@
-import React from 'react';
-import Particle from '../components/Particle';
-import SliderMainParticle from '../components/SliderMainParticle';
-import FeatureBox from '../components/FeatureBox';
-import CarouselCollectionRedux from '../components/CarouselCollectionRedux';
-import CarouselNewRedux from '../components/CarouselNewRedux';
-import AuthorListRedux from '../components/AuthorListRedux';
-import Footer from '../components/footer';
-import { createGlobalStyle } from 'styled-components';
+import React from "react";
+import Particle from "../components/Particle";
+import SliderMainParticle from "../components/SliderMainParticle";
+import FeatureBox from "../components/FeatureBox";
+import CarouselCollectionRedux from "../components/CarouselCollectionRedux";
+import CarouselNewRedux from "../components/CarouselNewRedux";
+import AuthorListRedux from "../components/AuthorListRedux";
+import Footer from "../components/footer";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   header#myHeader .logo .d-block{
@@ -107,25 +107,29 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-
-const homeone= () => (
+const homeone = () => (
   <div>
-  <GlobalStyles />
-      <section className="jumbotron no-bg" style={{backgroundImage: `url(${'./img/background/Background_01.png'})`}}>
-       <Particle/>
-         <SliderMainParticle/>
-      </section>
+    <GlobalStyles />
+    <section
+      className="jumbotron no-bg"
+      style={{
+        backgroundImage: `url(${"./img/background/Background_01.png"})`,
+      }}
+    >
+      <Particle />
+      <SliderMainParticle />
+    </section>
 
-      <section className='container no-bottom'>
-        <div className="row">
-            {/* <div className="col-lg-2 col-sm-4 col-6 mb30">
-                <span className="box-url">
-                    <img src="./img/wallet/1.png" alt="" className="mb20"/>
-                    <h4>Metamask</h4>
-                </span>
-            </div> */}
+    <section className="container no-bottom">
+      <div className="row">
+        <div className="col-lg-2 col-sm-4 col-6 mb30">
+          <span className="box-url">
+            <img src="./img/wallet/1.png" alt="" className="mb20" />
+            <h4>Metamask</h4>
+          </span>
+        </div>
 
-            {/* <div className="col-lg-2 col-sm-4 col-6 mb30">
+        <div className="col-lg-2 col-sm-4 col-6 mb30">
                 <span className="box-url">
                     <img src="./img/wallet/2.png" alt="" className="mb20"/>
                     <h4>Bitski</h4>
@@ -158,11 +162,11 @@ const homeone= () => (
                     <img src="./img/wallet/6.png" alt="" className="mb20"/>
                     <h4>Arkane</h4>
                 </span>
-            </div>  */}                                      
-        </div>
-      </section>
+            </div> 
+      </div>
+    </section>
 
-      {/* <section className='container no-top no-bottom'>
+    <section className='container no-top no-bottom'>
         <div className='row'>
           <div className="spacer-double"></div>
           <div className='col-lg-12 mb-2'>
@@ -204,10 +208,7 @@ const homeone= () => (
             </div>
             <FeatureBox/>
         </div>
-      </section> */}
-
-
-
+      </section>
   </div>
 );
 export default homeone;
